@@ -223,6 +223,7 @@ Blockly.Python["choice"] = function(block) {
 Blockly.Blocks["numericalresponse"] = {
   init: function() {
     this.appendDummyInput()
+      .appendField("numericalresponse ")
       .appendField("answer:")
       .appendField(new Blockly.FieldTextInput("$y"), "answer")
       .appendField("type:")
