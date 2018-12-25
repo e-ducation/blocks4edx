@@ -2,7 +2,7 @@
 blocks4edx可用于替代Open edX的`Custom Python-Evaluated Input`题目编辑器。允许课程团队在不写代码的情况下，通过拖拽积木自动生成代码与题目(XML).
 
 # usage
-访问: [blocks4edx](https://e-ducation.github.io/blocks4edx)
+访问: [blocks4edx](https://e-ducation.github.io/blocks4edx/)
 
 ### 选择题型
 首先选择你希望创建的Python-Evaluated Input题型， 目前支持多选题(单选题和多选题是一种题型)和填空题，之后会陆续添加其他题型。
