@@ -110,33 +110,6 @@ ${statements_solution}
   return code;
 };
 
-// 格式化数字
-// format(1234567, ',d')  // 接受输入，并且输出
-// https://stackoverflow.com/questions/1823058/how-to-print-number-with-commas-as-thousands-separators
-Blockly.Blocks["format_number"] = {
-  init: function() {
-    this.appendValueInput("number")
-      .setCheck("Number")
-      .appendField("format number");
-    this.setOutput(true, null);
-    this.setColour(230);
-    this.setTooltip("");
-    this.setHelpUrl("");
-  }
-};
-
-Blockly.Python["format_number"] = function(block) {
-  var value_number = Blockly.Python.valueToCode(
-    block,
-    "number",
-    Blockly.Python.ORDER_ATOMIC
-  );
-  // TODO: Assemble Python into code variable.
-  // var code = `format(${value_number}, ',d')`;
-  var code = `"{0:,.0f}".format(${value_number})`;
-  // TODO: Change ORDER_NONE to the correct strength.
-  return [code, Blockly.Python.ORDER_NONE];
-};
 
 // todo: html <>
 // 建立文本从 拼接文本 还是使用标记 需要选一个 某些地方只能使用标记 求值运算
@@ -256,3 +229,134 @@ Blockly.Python["numericalresponse"] = function(block) {
 `;
   return code;
 };
+
+
+// Blockly.Python["numericalresponse"] = function(block) {
+Blockly.Blocks["elite_random_float"] = {
+  init: function() {
+    this.appendValueInput("from").setCheck("Number").appendField("random float from"),
+    this.appendValueInput("to").setCheck("Number").appendField("to "),
+    //this.appendDummyInput().appendField(""),
+    this.setColour(230);
+    this.setInputsInline(!0),
+    this.setOutput(!0, null)
+  }
+}
+
+Blockly.Python["elite_random_float"] = function(block) {
+  Blockly.Python.definitions_.import_turtle = "import random"
+  let from = Blockly.Python.valueToCode(block,"from",Blockly.Python.ORDER_ATOMIC);
+  let to = Blockly.Python.valueToCode(block,"to",Blockly.Python.ORDER_ATOMIC);
+  code = `random.uniform(${from},${to})`
+  return [code, Blockly.Python.ORDER_NONE];
+}
+
+////////////////////
+// 格式化数字
+// format(1234567, ',d')  // 接受输入，并且输出
+// https://stackoverflow.com/questions/1823058/how-to-print-number-with-commas-as-thousands-separators
+
+Blockly.Blocks["thousands_separator"] = {
+  init: function() {
+    this.appendValueInput("number")
+      .setCheck("Number")
+      .appendField("thousands separator");
+    this.setOutput(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python["thousands_separator"] = function(block) {
+  var value_number = Blockly.Python.valueToCode(
+    block,
+    "number",
+    Blockly.Python.ORDER_ATOMIC
+  );
+  // var code = `format(${value_number}, ',d')`;
+  // var code = `"{0:,.0f}".format()`;
+  var code = `format(float(${value_number}), ',')`;
+  
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+
+Blockly.Blocks["percent_sign"] = {
+  init: function() {
+    this.appendValueInput("number")
+      .setCheck("Number")
+      .appendField("number to x%");
+    this.setOutput(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python["percent_sign"] = function(block) {
+  var value_number = Blockly.Python.valueToCode(
+    block,
+    "number",
+    Blockly.Python.ORDER_ATOMIC
+  );
+  // var code = `format(${value_number}, ',d')`;
+  var code = `"{}%".format(float(${value_number})*100)`;
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Blocks["fraction"] = {
+  init: function() {
+    this.appendValueInput("number")
+      .setCheck("Number")
+      .appendField("fraction(string)");
+    this.setOutput(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python["fraction"] = function(block) {
+  Blockly.Python.definitions_.import_turtle = "import fractions"
+  var value_number = Blockly.Python.valueToCode(
+    block,
+    "number",
+    Blockly.Python.ORDER_ATOMIC
+  );
+  // var code = `format(${value_number}, ',d')`;
+  // 
+  var code = `str(fractions.Fraction(*float(${value_number}).as_integer_ratio()))`;
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+
+Blockly.Blocks["decimal"] = {
+  init: function() {
+    this.appendValueInput("number")
+      .setCheck("Number")
+      .appendField("keep")
+      .appendField(new Blockly.FieldTextInput(2), "decimal_num")
+      .appendField("decimal")
+      
+    this.setOutput(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python["decimal"] = function(block) {
+  var decimal_num = block.getFieldValue("decimal_num");
+  // Blockly.Python.definitions_.import_turtle = "import fractions"
+  var value_number = Blockly.Python.valueToCode(
+    block,
+    "number",
+    Blockly.Python.ORDER_ATOMIC
+  );
+  // var code = `format(${value_number}, ',d')`;
+  // 
+  var code = `format(float(${value_number}), '0.${decimal_num}f')`;
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
