@@ -356,7 +356,9 @@ Blockly.Python["decimal"] = function(block) {
   );
   // var code = `format(${value_number}, ',d')`;
   // 
-  var code = `format(float(${value_number}), '0.${decimal_num}f')`;
+  var code = `eval(format(float(${value_number}), '0.${decimal_num}f'))`;
   return [code, Blockly.Python.ORDER_NONE];
 };
 
+
+// 需要一个数学运算，保留几位数 可运算的
