@@ -340,7 +340,7 @@ Blockly.Blocks["decimal"] = {
       .appendField("decimal")
       
     this.setOutput(true, null);
-    this.setColour(230);
+    this.setColour(200);
     this.setTooltip("");
     this.setHelpUrl("");
   }
@@ -362,3 +362,82 @@ Blockly.Python["decimal"] = function(block) {
 
 
 // 需要一个数学运算，保留几位数 可运算的
+
+Blockly.Blocks['html_p_input'] = {
+  init: function() {
+    this.appendValueInput("content")
+        .setCheck(null)
+        .appendField("<p>");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['html_p_input'] = function(block) {
+  var value_content = Blockly.Python.valueToCode(block, 'content', Blockly.Python.ORDER_ATOMIC);
+  // var value_content = block.getFieldValue('content')
+  // TODO: Assemble JavaScript into code variable.
+  value_content = eval(value_content)
+  var code = `<p>${value_content}</p>`;
+
+  return code;
+};
+
+
+
+Blockly.Blocks['output_variable'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("variable output")
+        .appendField(new Blockly.FieldVariable("variable"), "variable");
+    this.setOutput(true, "String");
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['output_variable'] = function(block) {
+  // Blockly.Python.quote_(block.getFieldValue('TEXT'))
+  // svar variable_variable = Blockly.Python.variableDB_.getName(block.getFieldValue('variable'), Blockly.Variables.NAME_TYPE);
+  // TODO: Assemble Python into code variable.
+  var variable_variable = block.getFieldValue('variable') // Blockly.Python.quote_(block.getFieldValue('variable'));
+  //console.log(window.v = variable_variable)
+  var code = `"$${variable_variable}"`;
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.Python.ORDER_NONE];
+};
+
+Blockly.Blocks['text_join_elite'] = {
+  init: function() {
+    this.appendValueInput("text1")
+        .setCheck(null)
+        .appendField("text join");
+    this.appendValueInput("text2")
+        .setCheck(null);
+    this.appendValueInput("text3")
+        .setCheck(null);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['text_join_elite'] = function(block) {
+  var value_text1 = Blockly.Python.valueToCode(block, 'text1', Blockly.Python.ORDER_ATOMIC);
+  var value_text2 = Blockly.Python.valueToCode(block, 'text2', Blockly.Python.ORDER_ATOMIC);
+  var value_text3 = Blockly.Python.valueToCode(block, 'text3', Blockly.Python.ORDER_ATOMIC);
+  // TODO: Assemble Python into code variable.
+  // console.log(value_text1,value_text2,value_text3)
+  if(!value_text1){value_text1="''"}
+  if(!value_text2){value_text2="''"}
+  if(!value_text3){value_text3="''"}
+  var code = eval(value_text1) + ' ' + eval(value_text2)+ ' ' + eval(value_text3)+ ' '
+  // TODO: Change ORDER_NONE to the correct strength.
+  //window.code = code
+  return [`'${code}'`, Blockly.Python.ORDER_NONE];
+};
