@@ -28,11 +28,42 @@ blocks4edx可用于替代Open edX的`Custom Python-Evaluated Input`题目编辑�
 你可以将制作的题目导出保存，用作之后的模版(导入即可)，或者分享给同事，让课程团队可以在已完成的题目上快速展开新的工作。
 
 
+# 积木
+# format
+用于控制数字的表示。
+
+### keep x decimal
+保留x位小数，输出为小数。
+
+其他的输出为字符串(注意！).
+
+
+# 随机化
+对于复杂计算(微积分)，建议使用枚举，计算机产生随机分组。
+
+```python
+# 随机数用于产生种子
+import random 
+x = random.randint(1,3)
+if x = 1:
+    a = 1
+    b = 1
+    c = 1
+if x = 2:
+    a = 2
+    b = 2 
+    c = 2
+```
+
+
+
 
 # todo
 blocks4edx不只适用于`Custom Python-Evaluated Input`题目，也适用于edx的其他题目，我们将在之后继续探索。
 
 blocks4edx的目标是为课程团队提供更好的题目编辑器。
+
+
 
 # 参考
 [Write-Your-Own-Grader Problem](https://edx.readthedocs.io/projects/edx-partner-course-staff/en/latest/exercises_tools/custom_python.html#write-your-own-grader-problem)
