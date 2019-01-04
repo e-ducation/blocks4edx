@@ -441,3 +441,63 @@ Blockly.Python['text_join_elite'] = function(block) {
   //window.code = code
   return [`'${code}'`, Blockly.Python.ORDER_NONE];
 };
+
+
+Blockly.Blocks["image"] = {
+  init: function() {
+    this.appendDummyInput()
+      .appendField("<img>")
+      .appendField(new Blockly.FieldTextInput("http://url"), "url")
+      .appendField("");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python["image"] = function(block) {
+  var url = block.getFieldValue("url")
+  // Rows and columns
+  // TODO: Assemble Python into code variable.
+  var code = `<img src="${url}" />`;
+  return code;
+};
+
+
+Blockly.Blocks['table'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("表格 行:")
+        .appendField(new Blockly.FieldNumber(2, 0, 100), "row")
+        .appendField("列")
+        .appendField(new Blockly.FieldNumber(2, 0, 100), "column");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['table'] = function(block) {
+  var number_row = parseInt(block.getFieldValue('row'));
+  var number_column = parseInt(block.getFieldValue('column'));
+  // TODO: Assemble Python into code variable.
+  var table_content = ""
+  for(let i in [...Array(number_row).keys()]){
+      console.log(i)
+      table_content += "<tr>\n"
+      for(let j in [...Array(number_column).keys()]){
+        table_content +=  `  <td class="text-center">td</td>\n`
+      }
+      table_content += `</tr>\n`
+  };
+  var header = `<link type="text/css" href="/asset-v1:EliteU+51040001+A1+type@asset+block@eliteu_course_table.css" rel="stylesheet"/>
+  <table class="eliteu-course-table text-center">`;
+
+  var footer = `</table>`
+
+  return `${header}\n${table_content}\n${footer}`;
+}
