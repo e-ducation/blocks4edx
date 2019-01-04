@@ -17,4 +17,6 @@
     生成简单规则的表格
 *  数学公式生成 AI
     https://webdemo.myscript.com/views/math/index.html
-*  随机化流程图
+*  随机化流程图(生成图片，使用markdown流程图)
+*  图片自适应
+*  题目的随机化开关
