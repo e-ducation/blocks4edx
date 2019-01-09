@@ -171,7 +171,12 @@ Blockly.Blocks["choice"] = {
       .appendField(
         new Blockly.FieldDropdown([["true", "true"], ["false", "false"]]),
         "correct"
-      );
+      )
+      .appendField("fixed:")
+      .appendField(
+        new Blockly.FieldDropdown([["false", "false"],["true", "true"]]),
+        "fixed"
+      )
     this.appendDummyInput()
       .appendField("text:")
       .appendField(new Blockly.FieldTextInput("default"), "text");
@@ -186,9 +191,16 @@ Blockly.Blocks["choice"] = {
 
 Blockly.Python["choice"] = function(block) {
   var dropdown_correct = block.getFieldValue("correct");
+  var dropdown_fixed = block.getFieldValue("fixed");
   var text_text = block.getFieldValue("text");
   // TODO: Assemble Python into code variable.
-  var code = `<choice correct="${dropdown_correct}">${text_text}</choice>\n`;
+  if(dropdown_fixed=="true"){
+    var code = `<choice correct="${dropdown_correct}" fixed="${dropdown_fixed}">${text_text}</choice>\n`;
+  }
+  else{
+    var code = `<choice correct="${dropdown_correct}">${text_text}</choice>\n`;
+  }
+  
   return code;
 };
 
@@ -501,3 +513,7 @@ Blockly.Python['table'] = function(block) {
 
   return `${header}\n${table_content}\n${footer}`;
 }
+
+// 以上都正确
+//  <choice correct="true" fixed="true">All of the above</choice>
+
