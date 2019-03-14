@@ -82,57 +82,57 @@
         导入导出
     -->
 
-    <h1>Blocks for Open edX --by elite <a href="https://github.com/e-ducation/blocks4edx/blob/master/readme.md" target="_blank">使用帮助</a></h1>
+    <h1>Blocks for Open edX --by elite <a href="https://github.com/e-ducation/blocks4edx/blob/master/readme.md" target="_blank">Help</a></h1>
 
     <p>
 
 
-      <span>选择题型:</span>
+      <span>choose:</span>
       <select id="mySel">
-        <option value="null">空</option>
-        <option value="multiplechoiceresponse">多选题</option>
-        <option value="numericalresponse">填空题</option>
+        <option value="null">null</option>
+        <option value="multiplechoiceresponse">multiple choice response</option>
+        <option value="numericalresponse">numerical response</option>
       </select>
       <button id="clipboard_btn" class="btn" data-clipboard-text="hello">
-        复制题目
+        copy to edx
       </button>
-      <button onclick="download_xml()">导出</button> <span>导入:</span>
+      <button onclick="download_xml()">export</button> <span>import</span>
       <input type="file" id="files" name="files[]" />
     </p>
 
     <div id="blocklyDiv" style="height: 600px; width: 1200px;"></div>
 
     <xml id="toolbox" style="display: none">
-      <category name="题目" colour="#3333ff">
+      <category name="Problem" colour="#3333ff">
         <block type="problem"></block> <block type="numericalresponse"></block>
         <block type="multiplechoiceresponse"></block>
         <block type="choice"></block>
       </category>
-      <category name="文本" colour="#3333ff">
+      <category name="Text" colour="#3333ff">
         <block type="html_p"></block>
         <block type="html_p_input"></block>
         <block type="text_join_elite"></block>
         <block type="text"></block>
         <block type="output_variable"></block>
       </category>
-      <category name="数字格式" colour="#3333ff">
+      <category name="Format" colour="#3333ff">
         <block type="thousands_separator"></block>
         <block type="percent_sign"></block>
         <block type="fraction"></block>
         <block type="decimal"></block>
       </category>
-      <category name="小工具" colour="#3333ff">
+      <category name="Tools" colour="#3333ff">
         <block type="image"></block>
         <block type="table"></block>
       </category>
-      <category name="逻辑" colour="%{BKY_LOGIC_HUE}">
+      <category name="Logic" colour="%{BKY_LOGIC_HUE}">
         <block type="controls_if"></block> <block type="logic_compare"></block>
         <block type="logic_operation"></block>
         <block type="logic_negate"></block>
         <block type="logic_boolean"></block> <block type="logic_null"></block>
         <block type="logic_ternary"></block>
       </category>
-      <category name="数学" colour="%{BKY_MATH_HUE}">
+      <category name="Math" colour="%{BKY_MATH_HUE}">
         <block type="math_number"> <field name="NUM">123</field> </block>
         <block type="math_arithmetic">
           <value name="A">
@@ -203,7 +203,7 @@
       </category>
 
       
-        <category name="循环" colour="%{BKY_LOOPS_HUE}">
+        <category name="Controls" colour="%{BKY_LOOPS_HUE}">
             <block type="controls_repeat_ext">
               <value name="TIMES">
                 <shadow type="math_number">
@@ -234,12 +234,12 @@
         </category>
       
       <category
-        name="变量"
+        name="Variable"
         colour="%{BKY_VARIABLES_HUE}"
         custom="VARIABLE"
       ></category>
       <category
-        name="函数"
+        name="Function"
         colour="%{BKY_PROCEDURES_HUE}"
         custom="PROCEDURE"
       ></category>

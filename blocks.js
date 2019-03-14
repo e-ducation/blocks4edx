@@ -256,7 +256,8 @@ Blockly.Blocks["elite_random_float"] = {
 }
 
 Blockly.Python["elite_random_float"] = function(block) {
-  Blockly.Python.definitions_.import_turtle = "import random"
+  // Blockly.Python.definitions_.import_turtle = "import fractions"
+  Blockly.Python.definitions_.import_random = "import random"
   let from = Blockly.Python.valueToCode(block,"from",Blockly.Python.ORDER_ATOMIC);
   let to = Blockly.Python.valueToCode(block,"to",Blockly.Python.ORDER_ATOMIC);
   code = `random.uniform(${from},${to})`
